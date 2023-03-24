@@ -17,6 +17,7 @@ namespace Kalkylatorn___Inlämning
         int metod = 0;
         double num1;
         double sum;
+        int räkna = 0;
         public Kalkylatorn()
         {
             InitializeComponent();
@@ -30,89 +31,91 @@ namespace Kalkylatorn___Inlämning
 
         private void btn0_Click(object sender, EventArgs e)
         {
-            Uträkning += "0";
-            tbxOutput.Text = Uträkning;
+            if(!(tbxOutput.Text == ""))
+            {
+                tbxOutput.Text += "0";
+            }
+            
         }
 
         private void btn1_Click(object sender, EventArgs e)
         {
-            Uträkning += "1";
-            tbxOutput.Text = Uträkning;
+            tbxOutput.Text += "1";
         }
 
         private void btn2_Click(object sender, EventArgs e)
         {
-            Uträkning += "2";
-            tbxOutput.Text = Uträkning;
+            tbxOutput.Text += "2";
+            
         }
 
         private void btn3_Click(object sender, EventArgs e)
         {
-            Uträkning += "3";
-            tbxOutput.Text = Uträkning;
+            tbxOutput.Text += "3";
+            
         }
 
         private void btn4_Click(object sender, EventArgs e)
         {
-            Uträkning += "4";
-            tbxOutput.Text = Uträkning;
+            tbxOutput.Text += "4";
+            
         }
 
         private void btn5_Click(object sender, EventArgs e)
         {
-            Uträkning += "5";
-            tbxOutput.Text = Uträkning;
+            tbxOutput.Text += "5";
+            
         }
 
         private void btn6_Click(object sender, EventArgs e)
         {
-            Uträkning += "6";
-            tbxOutput.Text = Uträkning;
+            tbxOutput.Text += "6";
+            
         }
 
         private void btn7_Click(object sender, EventArgs e)
         {
-            Uträkning += "7";
-            tbxOutput.Text = Uträkning;
+            tbxOutput.Text += "7";
+            
         }
 
         private void btn8_Click(object sender, EventArgs e)
         {
-            Uträkning += "8";
-            tbxOutput.Text = Uträkning;
+            tbxOutput.Text += "8";
+            
         }
 
         private void btn9_Click(object sender, EventArgs e)
         {
-            Uträkning += "9";
-            tbxOutput.Text = Uträkning;
+            tbxOutput.Text += "9";
+            
         }
 
         private void btnMinus_Click(object sender, EventArgs e)
         {
+            if (tbxOutput.Text != "" && räkna == 0)
+            {
+                num1 = double.Parse(tbxOutput.Text);
+                sum = num1;
+                tbxOutput.Text = "";
+            }
+            else if (tbxOutput.Text != "" && räkna > 0)
+            {
+                num1 = sum;
+                sum = num1 + double.Parse(tbxOutput.Text);
+                tbxOutput.Text = "";
+            }
+            räkna++;
+
+    }
+
+    private void btnLikamed_Click(object sender, EventArgs e)
+        {
             if (tbxOutput.Text != "")
             {
-                num1 = double.Parse(Uträkning);
-                Uträkning = "";
-                tbxOutput.Text = Uträkning;
-                metod = 1;
-            }
-            else
-            {
-                num1 = double.Parse(Uträkning);
-                sum = num1 + double.Parse(Uträkning);
-                Uträkning = sum.ToString();
-                tbxOutput.Text = Uträkning;
-            }
-        }
-
-        private void btnLikamed_Click(object sender, EventArgs e)
-        {
-            if (metod==1)
-            {
-                sum = num1 + double.Parse(Uträkning);
-                Uträkning = sum.ToString();
-                tbxOutput.Text = Uträkning;
+                sum = sum + double.Parse(tbxOutput.Text);
+                tbxOutput.Text = sum.ToString();
+                räkna = 0;
             }
             
         }

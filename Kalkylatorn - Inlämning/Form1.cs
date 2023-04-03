@@ -20,7 +20,7 @@ namespace Kalkylatorn___Inlämning
     {
         #region Variabler
         string Uträkning = "";
-        int metod = 0;
+        string metod = "";
         double num1;
         double sum;
         string sumS;
@@ -37,21 +37,21 @@ namespace Kalkylatorn___Inlämning
         #region Lika med
         private void btnLikamed_Click(object sender, EventArgs e)
         {
-            if (Uträkning != "" || metod > 6)
+            if (Uträkning != "" || metod == "√" || metod == "1/x")
             {
-                if (!(metod > 6))
+                if (!(metod == "√" || metod == "1/x"))
                 {
                     num1 = double.Parse(Uträkning); 
                 }
                 switch (metod)
                 {
-                    case 1:
+                    case "+":
                         sum += num1;
                         break;
-                    case 2:
+                    case "-":
                         sum -= num1;
                         break;
-                    case 3:
+                    case "/":
                         if (num1 == 0)
                         {
                             MessageBox.Show("Du kan inte dividera med 0");
@@ -59,16 +59,16 @@ namespace Kalkylatorn___Inlämning
                         else
                         sum /= num1;
                         break;
-                    case 4:
+                    case "*":
                         sum *= num1;
                         break;                    
-                    case 5:
+                    case "^x":
                         if (!latest)
                         {
                             sum = Math.Pow(sum, num1);
                         }                        
                         break;
-                    case 6:
+                    case "1/x":
                         if (sum != 0)
                         {
                             sum = Math.Pow(sum, -1);
@@ -78,7 +78,7 @@ namespace Kalkylatorn___Inlämning
                             MessageBox.Show("Du kan inte dividera med 0");
                         }                        
                         break;
-                    case 7:
+                    case "√":
                         if (sum >=0)
                         {
                             sum = Math.Sqrt(sum); 
@@ -148,7 +148,7 @@ namespace Kalkylatorn___Inlämning
         private void btnPlus_MouseClick(object sender, MouseEventArgs e)
         {
 
-            if (metod <= 5 && !latest)
+            if (!(metod == "√" || metod == "1/x") && !latest)
             {
                 viaPlus = true;
                 btnLikamed.PerformClick();
@@ -157,39 +157,12 @@ namespace Kalkylatorn___Inlämning
             {
                 latest = false;
             }
-
-            if ((sender as Button).Text == "+")
-            {
-                metod = 1;
-            }
-            else if ((sender as Button).Text == "-")
-            {
-                metod = 2;
-            }
-            else if ((sender as Button).Text == "/")
-            {
-                metod = 3;
-            }
-            else if ((sender as Button).Text == "*")
-            {
-                metod = 4;
-            }            
-            else if ((sender as Button).Text == "^x")
-            {
-                metod = 5;
-            }
-            else if ((sender as Button).Text == "1/x")
-            {
-                metod = 6;
-            }
-            else if ((sender as Button).Text == "√")
-            {
-                metod = 7;
-            }
-            if (metod > 5)
+            metod = (sender as Button).Text;
+            if (metod == "√" || metod == "1/x")
             {
                 btnLikamed.PerformClick();
             }
+            
             Uträkning = "";
         }
         private void btnInvers_Click(object sender, EventArgs e)
@@ -220,7 +193,7 @@ namespace Kalkylatorn___Inlämning
             {
                 sumS = sum.ToString();
                 sumS = sumS.Remove(sumS.Length - 1, 1);
-                if (sumS != "-")
+                if (sumS.Length > 1)
                 {
                     sum = double.Parse(sumS); 
                 }
@@ -234,7 +207,7 @@ namespace Kalkylatorn___Inlämning
         private void btnC_Click(object sender, EventArgs e)
         {
             sum = 0;
-            metod = 0;
+            metod = "";
             num1 = 0;
             Uträkning = "";
             tbxOutput.Text = Uträkning;

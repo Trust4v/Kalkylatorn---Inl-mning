@@ -18,7 +18,7 @@ namespace Kalkylatorn___Inlämning
 
     public partial class Kalkylatorn : Form
     {
-        #region Variablar
+        #region Variabler
         string Uträkning = "";
         int metod = 0;
         double num1;
@@ -27,12 +27,13 @@ namespace Kalkylatorn___Inlämning
         bool latest = false;
         bool viaPlus = false;
         double memory;
-        #endregion
+        
         public Kalkylatorn()
         {
             InitializeComponent();
 
         }
+        #endregion
         #region Lika med
         private void btnLikamed_Click(object sender, EventArgs e)
         {
@@ -98,7 +99,7 @@ namespace Kalkylatorn___Inlämning
                 viaPlus = false;
                    
                 tbxOutput.Text = sum.ToString();
-                //Uträkning = "";
+                
             }
         }
         #endregion
